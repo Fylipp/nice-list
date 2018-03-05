@@ -1,0 +1,5 @@
+language: python
+python:
+  - "3.6"
+script:
+  - python nice_list_test.py
