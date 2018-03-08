@@ -1,9 +1,10 @@
-def nice_format(iterable, use_and: bool = True, string_quotes: str = None) -> str:
+def nice_format(iterable, use_and: bool = True, string_quotes: str = None, oxford_comma: bool = False) -> str:
     """
     Format a list nicely. Supports lazy collections.
     :param iterable: The collection to format
     :param use_and: Whether to use 'and' as the last conjunction otherwise a comma is used
     :param string_quotes: Either None or the character to quote strings with
+    :param oxford_comma: Whether to use an Oxford comma (comma before and)
     :return: The formatted representation
     """
 
@@ -25,22 +26,30 @@ def nice_format(iterable, use_and: bool = True, string_quotes: str = None) -> st
 
         last_element = element
 
+    s = _str(last_element, string_quotes)
     if second:
-        text += _str(last_element, string_quotes)
+        text += s
     elif not first:
-        text += f' and {_str(last_element, string_quotes)}' if use_and else f', {_str(last_element, string_quotes)}'
+        if use_and:
+            if oxford_comma:
+                text += f', and {s}'
+            else:
+                text += f' and {s}'
+        else:
+            text += f', {s}'
 
     return text
 
 
-def nice_print(iterable, use_and: bool = True, string_quotes: str = None):
+def nice_print(iterable, use_and: bool = True, string_quotes: str = None, oxford_comma: bool = False):
     """
     Prints a nicely formatted list. Supports lazy collections.
     :param iterable: The list to format
     :param use_and: Whether to use 'and' as the last conjunction otherwise a comma is used
     :param string_quotes: Either None or the character to quote strings with
+    :param oxford_comma: Whether to use an Oxford comma (comma before and)
     """
-    print(nice_format(iterable, use_and, string_quotes))
+    print(nice_format(iterable, use_and, string_quotes, oxford_comma))
 
 
 def _str(obj: object, string_quotes: str) -> str:

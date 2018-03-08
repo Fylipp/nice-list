@@ -53,6 +53,9 @@ class NiceListFormattingTest(unittest.TestCase):
 
         self.assertEqual('1, two and Alice McBob', nice_format((1, 'two', Person('Alice', 'McBob'))))
 
+    def test_oxford_comma(self):
+        self.assertEqual('1, 2, 3, and 4', nice_format((1, 2, 3, 4), oxford_comma=True))
+
 
 if __name__ == '__main__':
     unittest.main()

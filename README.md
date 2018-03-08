@@ -21,6 +21,9 @@ nice_print(["Alice", "Bob", "Charles"], use_and=False)
 nice_print(["Alice", "Bob", "Charles", 20], string_quotes='"')
 # -> "Alice", "Bob", "Charles" and 20
 
+nice_print([1, 2, 3, 4], oxford_comma=True)
+# -> 1, 2, 3, and 4
+
 print(nice_format(["Alice", "Bob", "Charles"]))
 # -> Alice, Bob and Charles
 ```
